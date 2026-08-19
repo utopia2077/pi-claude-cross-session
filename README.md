@@ -1,3 +1,5 @@
+[English](README.md) · [简体中文](README.zh-CN.md)
+
 # pi-claude-cross-session
 
 Cross-session messaging between **pi** and **Claude Code**, built on Claude

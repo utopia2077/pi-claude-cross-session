@@ -17,6 +17,7 @@
 		"index.ts",
 		"peer.ts",
 		"README.md",
+		"README.zh-CN.md",
 		"LICENSE",
 		"CHANGELOG.md"
 	],
