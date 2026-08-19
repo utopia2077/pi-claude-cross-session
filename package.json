@@ -43,5 +43,13 @@
 		"test": "vitest run",
 		"typecheck": "tsc --noEmit",
 		"check": "biome check --write --error-on-warnings . && npm run typecheck && npm run test"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/utopia2077/pi-claude-cross-session.git"
+	},
+	"bugs": {
+		"url": "https://github.com/utopia2077/pi-claude-cross-session/issues"
+	},
+	"homepage": "https://github.com/utopia2077/pi-claude-cross-session"
 }

@@ -41,7 +41,7 @@ Once published:
 ```bash
 pi install npm:pi-claude-cross-session@0.1.0
 # or, from a git release tag:
-pi install git:github.com/<owner>/pi-claude-cross-session@v0.1.0
+pi install git:github.com/utopia2077/pi-claude-cross-session@v0.1.0
 ```
 
 For a quick test without installing, from this checkout:
