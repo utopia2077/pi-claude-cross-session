@@ -9,6 +9,23 @@
 会出现在 Claude Code 原生的 `ListAgents` 里，并原样接收其原生 `SendMessage`
 发来的消息。
 
+## 演示
+
+**pi 注册自己**——会话启动时绑定收件 socket，并在 Claude Code 自己的会话注册表
+里发布自己：
+
+<img src="docs/images/01-register.png" width="800" alt="pi 的启动通知：Claude cross-session messaging on, visible to Claude Code as pi-demo-43b">
+
+**Claude Code 发现它**——这个 pi 会话出现在 Claude Code 原生的 `ListAgents` 里，
+可以按名字寻址：
+
+<img src="docs/images/02-discover.png" width="800" alt="Claude Code 确认 pi-demo-43b 已列出，可以通过 SendMessage 触达">
+
+**一条消息走完一个来回**——Claude Code 的 `SendMessage` 送达 pi 的收件箱，pi
+再用它自己的 `SendMessage` 回一条，两个方向用的是同一套工具和协议：
+
+<img src="docs/images/03-roundtrip.png" width="800" alt="Claude Code 给 pi 发消息，pi 回复确认双向消息生效">
+
 机制一句话：Claude Code 给每个会话分配一个收件 socket 和磁盘上的一条注册表
 记录。pi 从该注册表发现活着的 Claude 会话，并把 peer 协议帧写到它们的收件
 socket。反方向上，pi 绑定自己的收件 socket、以 `pi-*` peer 的身份发布自己的

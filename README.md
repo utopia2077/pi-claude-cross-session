@@ -10,6 +10,24 @@ Code's cross-session messaging exposes, with identical definitions:
 appears in Claude Code's native `ListAgents` and receives its native
 `SendMessage` messages unchanged.
 
+## Demo
+
+**pi registers itself** — on session start it binds an inbox and advertises
+itself in Claude Code's own session registry:
+
+<img src="docs/images/01-register.png" width="800" alt="pi's startup notice: Claude cross-session messaging on, visible to Claude Code as pi-demo-43b">
+
+**Claude Code discovers it** — the pi session shows up in Claude Code's native
+`ListAgents`, addressable by name:
+
+<img src="docs/images/02-discover.png" width="800" alt="Claude Code confirming pi-demo-43b is listed and reachable via SendMessage">
+
+**A message makes the round trip** — Claude Code's `SendMessage` reaches pi's
+inbox, and pi replies back with its own `SendMessage`, same tools and protocol
+in both directions:
+
+<img src="docs/images/03-roundtrip.png" width="800" alt="Claude Code sending a message to pi, and pi replying back to confirm messaging works in both directions">
+
 One paragraph on the mechanics: Claude Code gives each of its sessions an inbox
 socket and a registry record on disk. pi discovers live Claude sessions from
 that registry, and writes peer-protocol frames to their inbox sockets. In the
