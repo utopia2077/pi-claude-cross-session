@@ -150,6 +150,27 @@ reads it, and the outcome is reported back to pi as a delivery notice.
 
 ## Development
 
+### Local development loop
+
+Install the checkout into pi without copying it; pi reads the `pi.extensions`
+manifest from `package.json` and loads `index.ts` directly, so edits take
+effect on `/reload`:
+
+```bash
+pi install /absolute/path/to/pi-claude-cross-session
+pi list                      # should list the package
+```
+
+Inside a pi session, verify the extension is active: session start prints a
+notice like `visible to Claude Code as "pi-<dir>-<hash>"`, and asking the
+agent to call `ListAgents` exercises the real path. After each code change,
+run `/reload` inside the pi TUI to hot-reload the extension.
+
+Use `-e ./index.ts` for one-off runs that write nothing to settings, and
+`pi remove /absolute/path/to/pi-claude-cross-session` to uninstall.
+
+### Repo checks
+
 ```bash
 npm ci
 npm run check   # biome + tsc + vitest (runs on Linux and macOS in CI)
