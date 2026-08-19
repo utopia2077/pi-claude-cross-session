@@ -25,7 +25,12 @@ import {
 const LIMITS: Partial<PeerLimits> = { maxFrameBytes: 64 * 1024 };
 
 function makeDirs(): { root: string; sessionsDir: string; socketDir: string } {
-	const root = join(tmpdir(), `pi-claude-peer-test-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+	// macOS limits Unix-domain socket paths (sun_path) to 103 bytes and
+	// silently mangles longer binds; its TMPDIR (/var/folders/...) is long
+	// enough to trip that limit. Use the short /tmp base on POSIX so every
+	// fake socket path stays well under the limit.
+	const tmpBase = process.platform === "win32" ? tmpdir() : "/tmp";
+	const root = join(tmpBase, `pi-xs-${Date.now()}-${Math.random().toString(36).slice(2)}`);
 	const sessionsDir = join(root, "sessions");
 	const socketDir = join(root, "socks");
 	mkdirSync(sessionsDir, { recursive: true, mode: 0o700 });
